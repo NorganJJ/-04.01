@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование тренировки</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Редактирование тренировки</h1>
+<form th:method="post" th:action="@{'/antraining/' + 'edit/' + ${antraining.id}}" th:object="${antraining}">
+    <label for="kolvo">Кол-во:</label>
+    <input type="text" id="kolvo" name="kolvo" th:field="*{kolvo}" required>
+    <label for="month">Месяц:</label>
+    <input type="text" id="month" name="month" th:field="*{month}" required>
+    <label>Животное</label>
+    <div class="form-group">
+        <select th:field="*{animal}" id="category" class="custom-select">
+            <option value="">Выберите Животное</option>
+            <option th:each="animal : ${animals}" th:value="${animal.id}" th:text="${animal.name}"></option>
+        </select>
+        <span class="error-message" th:if="${#fields.hasErrors('animal')}" th:errors="*{animal}"></span>
+    </div>
+    <label>Тренер</label>
+    <div class="form-group">
+        <select th:field="*{coaches}" id="coaches" class="custom-select">
+            <option value="">Выберите тренера</option>
+            <option th:each="coaches : ${coachess}" th:value="${coaches.id}" th:text="${coaches.surname + ' ' + coaches.name + ' ' + coaches.second_name}"></option>
+        </select>
+        <span class="error-message" th:if="${#fields.hasErrors('coaches')}" th:errors="*{coaches}"></span>
+    </div>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/antraining" class="btn-back">Отмена</a>
+</body>
+</html>

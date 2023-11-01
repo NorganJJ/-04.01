@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список тренеров</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<form method="get" action="/coaches/search">
+    <p align="center">Поиск данных по фамилии</p>
+    <input type="text" class="search-input" name="name" placeholder="Имя пользователя">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+<h1>Список пользователй</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Почта</th>
+        <th>Возраст</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" coaches : ${coachess}">
+        <td th:text="${coaches.id}"></td>
+        <td th:text="${coaches.email}"></td>
+        <td th:text="${coaches.age}"></td>
+        <td th:text="${coaches.surname}"></td>
+        <td th:text="${coaches.name}"></td>
+        <td th:text="${coaches.second_name}"></td>
+        <td>
+            <a th:href="@{'/coaches/' + 'edit/' + ${coaches.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/coaches/' + 'delete/' + ${coaches.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/coaches/add" class="btn-new">Создать</a>
+</body>
+</html>

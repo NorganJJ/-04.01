@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание нового вольера</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Создание нового вольера</h1>
+<form action="/aviary/add" th:object="${aviary}" method="post">
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <label for="code">Код:</label>
+    <input type="text" id="code" name="code" th:field="*{code}" required>
+    <label for="description">Описание:</label>
+    <input type="text" id="description" name="description" th:field="*{description}" required>
+    <input type="submit" value="Создать" class="btn-save">
+</form>
+<a href="/aviary" class="btn-back">Отмена</a>
+</body>
+</html>

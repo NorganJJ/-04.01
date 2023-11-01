@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование мероприятия</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Редактирование мероприятия</h1>
+<form th:method="post" th:action="@{'/event/' + 'edit/' + ${event.id}}" th:object="${event}">
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <label>Категория</label>
+    <div class="form-group">
+        <select th:field="*{category}" id="category" class="custom-select">
+            <option value="">Выберите категорию</option>
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+        <span class="error-message" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+    </div>
+    <label>Тренер</label>
+    <div class="form-group">
+        <select th:field="*{coaches}" id="coaches" class="custom-select">
+            <option value="">Выберите тренера</option>
+            <option th:each="coaches : ${coachess}" th:value="${coaches.id}" th:text="${coaches.surname + ' ' + coaches.name + ' ' + coaches.second_name}"></option>
+        </select>
+        <span class="error-message" th:if="${#fields.hasErrors('coaches')}" th:errors="*{coaches}"></span>
+    </div>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/event" class="btn-back">Отмена</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1>Главная страница</h1>
+</header>
+<nav>
+    <ul class="menu">
+        <li><a href="/event" class="btn">Список мероприятий</a></li>
+        <li><a href="/ticket" class="btn">Список билетов</a></li>
+        <li><a href="/animal" class="btn">Список животных</a></li>
+        <li><a href="/category" class="btn">Список категорий мероприятий</a></li>
+        <li><a href="/coaches" class="btn">Список тренеров</a></li>
+        <li><a href="/aviary" class="btn">Список вольеров</a></li>
+        <li><a href="/eventmark" class="btn">Список записи на мероприятие</a></li>
+        <li><a href="/antraining" class="btn">Список тренировок животных</a></li>
+        <li><a href="/user" class="btn">Изменить роль пользователей</a></li>
+        <!-- Добавьте кнопки для других страниц по аналогии -->
+    </ul>
+</nav>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<div class="text-end">
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-warning">Log out</button>
+    </form>
+</div>
+</body>
+</html>

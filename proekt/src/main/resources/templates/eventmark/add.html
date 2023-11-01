@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание записи</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Создание записи</h1>
+<form th:action="${'/eventmark/add'}" method="post">
+    <h2 style="text-align: center;">Добавление записи на мероприятие</h2>
+    <select name="user">
+        <div th:each="element : ${users}">
+            <option th:text="${element.email}"></option>
+        </div>
+    </select>
+    <select  name="event">
+        <div th:each="element : ${events}">
+            <option th:text="${element.name}"></option>
+        </div>
+    </select>
+    <br>
+    <div style="text-align: center;">
+        <button type="submit">Добавить</button>
+    </div>
+</form>
+<a href="/eventmark" class="btn-back">Отмена</a>
+</body>
+</html>

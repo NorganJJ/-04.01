@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование тренера</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Редактирование тренера</h1>
+<form th:method="post" th:action="@{'/coaches/' + 'edit/' + ${coaches.id}}" th:object="${coaches}">
+    <label for="email">Почта:</label>
+    <input type="text" id="email" name="email" th:field="*{email}" required>
+    <label for="age">Возраст:</label>
+    <input type="text" id="age" name="age" th:field="*{age}" required>
+    <label for="surname">Фамилия:</label>
+    <input type="text" id="surname" name="surname" th:field="*{surname}" required>
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <label for="second_name">Отчество:</label>
+    <input type="text" id="second_name" name="second_name" th:field="*{second_name}" required>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/coaches" class="btn-back">Отмена</a>
+</body>
+</html>

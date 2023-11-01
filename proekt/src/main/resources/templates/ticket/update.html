@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование билета</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Редактирование билета</h1>
+<form th:method="post" th:action="@{'/ticket/' + 'edit/' + ${ticket.id}}" th:object="${ticket}">
+    <label for="email">Название:</label>
+    <input type="text" id="email" name="email" th:field="*{name}" required>
+    <label for="age">Срок:</label>
+    <input type="text" id="age" name="age" th:field="*{time}" required>
+    <label for="password">Цена:</label>
+    <input type="text" id="password" name="password" th:field="*{cost}" required>
+    <label>Покупатель</label>
+    <div class="form-group">
+        <select th:field="*{user}" id="user" class="custom-select">
+            <option value="">Выберите покупателя</option>
+            <option th:each="userItem : ${users}" th:value="${userItem.id}" th:text="${userItem.email}"></option>
+        </select>
+        <span class="error-message" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></span>
+    </div>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/ticket" class="btn-back">Отмена</a>
+</body>
+</html>

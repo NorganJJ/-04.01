@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Редактирование пользователя</h1>
+<form th:method="post" th:action="@{'/user/' + ${user_object.id} + '/update'}" th:object="${user_object}">
+    <label for="email">Почта:</label>
+    <input type="text" id="email" name="email" th:field="*{email}" required>
+    <div th:each="role : ${roles}">
+        <input type="checkbox" th:id="${role}"
+               th:name="${'roles[]'}" th:value="${role}"
+               th:checked="${#lists.contains(user_object.roles,role)}">
+
+        <label th:text="${role}"></label>
+    </div>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/user" class="btn-back">Отмена</a>
+</body>
+</html>

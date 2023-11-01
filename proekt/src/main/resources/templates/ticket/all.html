@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список билетов</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<form method="get" action="/ticket/search">
+    <p align="center">Поиск данных по названию</p>
+    <input type="text" class="search-input" name="name" placeholder="Билет">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+<h1>Список пользователeй</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Срок</th>
+        <th>Цена</th>
+        <th>Покупатель</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" ticket : ${tickets}">
+        <td th:text="${ticket.id}"></td>
+        <td th:text="${ticket.name}"></td>
+        <td th:text="${ticket.time}"></td>
+        <td th:text="${ticket.cost}"></td>
+        <td th:text="${ticket.user != null ? ticket.user.email : ''}"></td>
+        <td>
+            <a th:href="@{'/ticket/' + 'edit/' + ${ticket.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/ticket/' + 'delete/' + ${ticket.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/ticket/add" class="btn-new">Создать</a>
+</body>
+</html>

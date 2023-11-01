@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Создание нового животного</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Создание нового животного</h1>
+<form action="/animal/add" th:object="${aviary}" method="post">
+  <label>Вольер:</label>
+  <select name="id" id="id">
+    <div th:each="element : ${aviary}">
+      <option th:text="${element.id}"></option>
+    </div>
+  </select>
+  <label for="name">Название:</label>
+  <input type="text" id="name" name="name">
+  <label for="age">Возраст:</label>
+  <input type="number" id="age" name="age">
+  <label for="color">Окрас:</label>
+  <input type="text" id="color" name="color">
+  <input type="submit" value="Создать" class="btn-save">
+</form>
+<a href="/animal" class="btn-back">Отмена</a>
+</body>
+</html>

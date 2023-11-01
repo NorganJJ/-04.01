@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Список пользователй</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Почта</th>
+        <th>Пароль</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+        <td>
+            <a th:href="@{'/user/' + ${user.id} + '/update'}" class="btn-edit">Редактировать</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

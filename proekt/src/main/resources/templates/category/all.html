@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список категорий</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<form method="get" action="/category/search">
+    <p align="center">Поиск данных по названию</p>
+    <input type="text" class="search-input" name="name" placeholder="Название">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+<h1>Список категорий</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Причина</th>
+        <th>Статус</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" category : ${categories}">
+        <td th:text="${category.id}"></td>
+        <td th:text="${category.name}"></td>
+        <td th:text="${category.reason}"></td>
+        <td th:text="${category.status}"></td>
+        <td>
+            <a th:href="@{'/category/' + 'edit/' + ${category.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/category/' + 'delete/' + ${category.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/category/add" class="btn-new">Создать</a>
+</body>
+</html>

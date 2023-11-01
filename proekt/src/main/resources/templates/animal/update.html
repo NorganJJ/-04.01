@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование животного</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>Редактирование животного</h1>
+<form th:action="@{'/animal/' + 'edit/' + ${animal.id}}" th:object="${animal}" th:method="post">
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <label for="age">Возраст:</label>
+    <input type="text" id="age" name="age" th:field="*{age}" required>
+    <label for="color">Окрас:</label>
+    <input type="text" id="color" name="color" th:field="*{color}" required>
+    <input type="submit" value="Сохранить" class="btn-save">
+</form>
+<a href="/animal" class="btn-back">Отмена</a>
+</body>
+</html>

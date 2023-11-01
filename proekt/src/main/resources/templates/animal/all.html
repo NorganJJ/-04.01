@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<form method="get" action="/animal/search">
+    <p align="center">Поиск данных по имени</p>
+    <input type="text" class="search-input" name="name" placeholder="Имя животного">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+<h1>Список животных</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>ID Вольера</th>
+        <th>Название</th>
+        <th>Возраст</th>
+        <th>Окрас</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" animal : ${animals}">
+        <td th:text="${animal.id}"></td>
+        <td th:text="${animal.id}"></td>
+        <td th:text="${animal.name}"></td>
+        <td th:text="${animal.age}"></td>
+        <td th:text="${animal.color}"></td>
+        <td>
+            <a th:href="@{'/animal/' + 'edit/' + ${animal.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/animal/' + 'delete/' + ${animal.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/animal/add" class="btn-new">Создать</a>
+</body>
+</html>

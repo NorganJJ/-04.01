@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список тренировок</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<form method="get" action="/antraining/search">
+    <p align="center">Поиск данных по названию</p>
+    <input type="text" class="search-input" name="month" placeholder="Месяц">
+    <button type="submit" class="search-button">🔍</button>
+</form>
+<h1>Список тренировок</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Кол-во</th>
+        <th>Месяц</th>
+        <th>Тренер</th>
+        <th>Животное</th>
+        <th>Действие</th>
+    </tr>
+    <tr th:each=" antraining : ${antrainings}">
+        <td th:text="${antraining.id}"></td>
+        <td th:text="${antraining.kolvo}"></td>
+        <td th:text="${antraining.month}"></td>
+        <td th:text="${antraining.coaches != null ? antraining.coaches.email : ''}"></td>
+        <td th:text="${antraining.animal != null ? antraining.animal.name : ''}"></td>
+        <td>
+            <a th:href="@{'/antraining/' + 'edit/' + ${antraining.id}}" class="btn-edit">Редактировать</a>
+            <a th:href="@{'/antraining/' + 'delete/' + ${antraining.id}}" class="btn-delete" th:method="delete">Удалить</a>
+        </td>
+    </tr>
+</table>
+<a href="/antraining/add" class="btn-new">Создать</a>
+</body>
+</html>
